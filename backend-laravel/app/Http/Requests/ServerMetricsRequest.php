@@ -31,6 +31,7 @@ class ServerMetricsRequest extends FormRequest
             'disk_total_gb'  => 'required|numeric',
             'disk_used_gb'   => 'required|numeric',
             'disk_usage_pct' => 'required|numeric',
+            'key' => 'required',
         ];
     }
 }

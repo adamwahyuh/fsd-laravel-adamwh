@@ -12,6 +12,14 @@ class ServerMetricController extends Controller
     //
     public function store(ServerMetricsRequest $request){
         $data = $request->validated();
+
+        if ($data['key'] !== env('GOLANG_KEY')) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Unauthorized.',
+            ], 401);
+        }
+
         $data['timestamp'] = Carbon::parse($data['timestamp'])->toDateTimeString();
 
         $metric = ServerMetric::create($data);
